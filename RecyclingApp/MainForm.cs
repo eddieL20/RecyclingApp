@@ -10,7 +10,7 @@ namespace RecyclingApp
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click( object sender , EventArgs e )
         {
             //RecycleContext _context = new RecycleContext();
             //var trailers = _context.Trailers.ToList();
@@ -21,7 +21,13 @@ namespace RecyclingApp
 
             trailersForm.ShowDialog();
 
-            
+
+        }
+
+        private void BtnMaterials_Click( object sender , EventArgs e )
+        {
+            MaterialsForm materialsForm = new ();
+            materialsForm.ShowDialog();
         }
     }
 }

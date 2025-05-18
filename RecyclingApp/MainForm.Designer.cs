@@ -29,31 +29,44 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            BtnMaterials = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(12, 26);
+            button1.Location = new Point( 12 , 26 );
             button1.Name = "button1";
-            button1.Size = new Size(337, 41);
+            button1.Size = new Size( 337 , 41 );
             button1.TabIndex = 0;
             button1.Text = "Docked Trailers";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click +=  button1_Click ;
+            // 
+            // BtnMaterials
+            // 
+            BtnMaterials.Location = new Point( 12 , 73 );
+            BtnMaterials.Name = "BtnMaterials";
+            BtnMaterials.Size = new Size( 337 , 43 );
+            BtnMaterials.TabIndex = 1;
+            BtnMaterials.Text = "Materials";
+            BtnMaterials.UseVisualStyleBackColor = true;
+            BtnMaterials.Click +=  BtnMaterials_Click ;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF( 8F , 20F );
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1089, 604);
-            Controls.Add(button1);
+            ClientSize = new Size( 1089 , 604 );
+            Controls.Add( BtnMaterials );
+            Controls.Add( button1 );
             Name = "MainForm";
             Text = "Recycling App";
-            ResumeLayout(false);
+            ResumeLayout( false );
         }
 
         #endregion
 
         private Button button1;
+        private Button BtnMaterials;
     }
 }

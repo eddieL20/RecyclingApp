@@ -29,5 +29,10 @@ namespace RecyclingApp
             MaterialsForm materialsForm = new ();
             materialsForm.ShowDialog();
         }
+
+        private void panel1_Paint( object sender , PaintEventArgs e )
+        {
+
+        }
     }
 }

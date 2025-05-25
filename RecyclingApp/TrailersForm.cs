@@ -49,10 +49,20 @@ namespace RecyclingApp
             }
         }
 
-        private void btnUpdateTrailer_Click(object sender, EventArgs e)
+        private void btnUpdateTrailer_Click( object sender , EventArgs e )
         {
-            // Add logic to handle the "Update Trailer" button click event.  
-            MessageBox.Show("Update Trailer button clicked!");
+            if ( dataGVTrailers.SelectedRows.Count == 1 )
+            {
+                // Retrieve the TrailerId from the selected row
+                int trailerId = Convert.ToInt32(dataGVTrailers.SelectedRows[0].Cells["TrailerId"].Value);
+
+                // Pass the TrailerId to the UpdateTrailerForm or use it as needed
+                UpdateTrailerForm updateTrailerForm = new UpdateTrailerForm(trailerId);
+                updateTrailerForm.ShowDialog();
+            } else
+            {
+                MessageBox.Show( "Please select exactly one trailer to update." );
+            }
         }
 
         private void btnCompletedTrailers_Click(object sender, EventArgs e)

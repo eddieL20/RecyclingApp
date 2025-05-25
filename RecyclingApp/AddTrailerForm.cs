@@ -13,6 +13,7 @@ namespace RecyclingApp
 {
     public partial class AddTrailerForm : Form
     {
+
         public AddTrailerForm()
         {
             InitializeComponent();
@@ -20,17 +21,31 @@ namespace RecyclingApp
 
         private void btnSubmitTrailer_Click( object sender , EventArgs e )
         {
-            validateAddTrailerTxt();
+            var result = ValidateAddTrailerTxt();
 
+            if ( result == null )
+                return;
+
+            // Assign values to local variables instead of readonly fields
+            var (trailerId, totalWeight, fromLocation, dockNum, arrivalDate ) = result.Value;
 
             using ( var context = new RecycleContext() )
             {
-
+                var newTrailer = new Trailer
+                {
+                    TrailerId = trailerId,
+                    TotalWeight = totalWeight,
+                    FromLocation = fromLocation,
+                    DockNum = dockNum,
+                    ArrivalDate = arrivalDate
+                };
+                context.Trailers.Add( newTrailer );
+                context.SaveChanges();
             }
             this.Close();
         }
 
-        private void validateAddTrailerTxt()
+        private (int trailerId, decimal totalWeight, string fromLocation, int dockNum, DateTime arrivalDate)? ValidateAddTrailerTxt()
         {
             try
             {
@@ -58,12 +73,14 @@ namespace RecyclingApp
                     throw new Exception( "Dock # must be a valid integer." );
                 }
 
+                DateTime arrivalDate = dtArrivalDate.Value;
+
                 MessageBox.Show(
                     "Validation successful!" ,
                     "Success" ,
                     MessageBoxButtons.OK ,
                     MessageBoxIcon.Information );
-
+                return (trailerId, totalWeight, txtFromLocation.Text.Trim(), dockNum, arrivalDate);
             } catch ( Exception ex )
             {
                 MessageBox.Show(
@@ -71,7 +88,7 @@ namespace RecyclingApp
                     "Validation Error" ,
                     MessageBoxButtons.OK ,
                     MessageBoxIcon.Error );
-
+                return null;
             }
         }
 
